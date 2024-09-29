@@ -1,7 +1,7 @@
 
 # QL4GRec
 
-This is the code for the NeurIPS 2024 submission: Quantitative Language for Generative Recommendation.
+This is the code for the ICLR 2024 submission: Multimodal Quantitative Language for Generative Recommendation.
 
 ## Setup
 
