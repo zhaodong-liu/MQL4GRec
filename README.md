@@ -1,5 +1,5 @@
 
-# QL4GRec
+# MQL4GRec
 
 This is the code for the ICLR 2025 submission: Multimodal Quantitative Language for Generative Recommendation.
 
