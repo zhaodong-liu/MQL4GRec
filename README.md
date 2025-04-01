@@ -8,7 +8,7 @@ This is the code for the ICLR 2025 paper:
 > pytorch==2.1.0  
 transformers <= 4.45.0  
 
-We found that different versions of transformers significantly impact convergence speed and performance under default parameters.  
+- We found that different versions of **transformers** significantly impact convergence speed and performance under default parameters.  
 For newer versions, parameter adjustments are required.
 
 We tested different transformers versions with accelerate==0.28.0:  
