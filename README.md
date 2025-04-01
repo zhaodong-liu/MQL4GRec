@@ -1,7 +1,7 @@
-
 # MQL4GRec
 
-This is the code for the ICLR 2025 paper: Multimodal Quantitative Language for Generative Recommendation.
+This is the code for the ICLR 2025 paper:  
+[**Multimodal Quantitative Language for Generative Recommendation**](https://openreview.net/pdf?id=v7YrIjpkTF)
 
 ## Setup
 
@@ -9,52 +9,41 @@ Before running the scripts, ensure you have installed all the necessary dependen
 
 ## Quick Start
 
-Datasets coming soon...
+### Data Processing
+```
+cd data_process
+```
+1. Download images  
+2. Process data so that each item corresponds to one image and one text description  
+3. Obtain text embeddings
+4. Obtain image embeddings    
 
-Follow these steps to get started:
+Preprocessed data, pretrained checkpoints, and training logs:  
+[Google Drive Folder](https://drive.google.com/drive/folders/1eewycbcAJ95atmF_V3bNchPIFDSw_TQC)
 
 ### Training the Quantitative Translator
-
-1. Navigate to the `index` folder:
-   ```
-   cd index
-   ```
-2. Run the training script:
-   ```
-   bash script/run.sh
-   ```
-3. Generate code distributions:
-   ```
-   bash script/gen_code_dis.sh
-   ```
+```
+cd index
+bash script/run.sh          # Run training
+bash script/gen_code_dis.sh # Generate code 
+```
 
 ### Pre-training
-
-1. Start the pre-training process:
-   ```
-   bash script/pretrain.sh
-   ```
+```
+bash script/pretrain.sh
+```
 
 ### Fine-tuning
-
-1. Perform fine-tuning:
-   ```
-   bash finetune.sh
-   ```
+```
+bash finetune.sh
+```
 
 ## Notes
-
-- Ensure that you have the necessary permissions to execute shell scripts.
-- Modify the script paths if necessary to match your local directory structure.
-- Check that all scripts are executable by running:
-   ```
-   chmod +x script_name.sh
-   ```
+- Ensure execution permissions for scripts (`chmod +x *.sh`)
+- Adjust paths to match your local directory structure
 
 ## Contributing
-
-If you have any suggestions or fixes, please create a pull request or open an issue.
+PRs and issues are welcome!
 
 ## License
-
 N/A
