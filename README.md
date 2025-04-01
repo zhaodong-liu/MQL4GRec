@@ -3,6 +3,8 @@
 This is the code for the ICLR 2025 paper:  
 [**Multimodal Quantitative Language for Generative Recommendation**](https://openreview.net/pdf?id=v7YrIjpkTF)
 
+![alt text](figures/framework.png)
+
 ## Setup
 
 > pytorch==2.1.0  
