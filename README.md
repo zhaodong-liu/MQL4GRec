@@ -17,7 +17,7 @@ We tested different transformers versions with accelerate==0.28.0:
 - v4.47.0, 4.48.0, 4.50.0
 ![alt text](figures/2.png)  
 
-- v4.38.2, 4.39.0, 4.40.0  
+- v4.38.2, 4.39.0, 4.40.0, 4.45.0
 ![alt text](figures/3.png)  
 
 - v4.46.0 shows high training loss  
