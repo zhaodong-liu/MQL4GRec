@@ -55,3 +55,4 @@ Process rating data:
  Dataset:  Instruments
 Instruments ViT-L/14
 Load model.
+Embeddings shape:  (6248, 768)
