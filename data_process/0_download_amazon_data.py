@@ -44,11 +44,8 @@ def verify_gzip(filepath):
         return False
 
 
-def download_amazon_dataset(args):
+def download_amazon_dataset(dataset, output_root):
     """Download Amazon dataset files for specified category"""
-
-    dataset = args.dataset
-    output_root = args.output_path
 
     # Get full category name
     if dataset not in amazon18_dataset2fullname:
@@ -205,7 +202,7 @@ if __name__ == "__main__":
     total_count = len(args.dataset)
 
     for dataset in args.dataset:
-        if download_amazon_dataset(args):
+        if download_amazon_dataset(dataset, args.output_path):
             success_count += 1
 
     # Summary
