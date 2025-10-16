@@ -4,6 +4,7 @@ import urllib
 import warnings
 from typing import Any, Union, List
 from pkg_resources import packaging
+import ssl
 
 import torch
 from PIL import Image
@@ -56,7 +57,12 @@ def _download(url: str, root: str):
         else:
             warnings.warn(f"{download_target} exists, but the SHA256 checksum does not match; re-downloading the file")
 
-    with urllib.request.urlopen(url) as source, open(download_target, "wb") as output:
+    # Create SSL context that doesn't verify certificates (for environments with self-signed certs)
+    ssl_context = ssl.create_default_context()
+    ssl_context.check_hostname = False
+    ssl_context.verify_mode = ssl.CERT_NONE
+
+    with urllib.request.urlopen(url, context=ssl_context) as source, open(download_target, "wb") as output:
         with tqdm(total=int(source.info().get("Content-Length")), ncols=80, unit='iB', unit_scale=True, unit_divisor=1024) as loop:
             while True:
                 buffer = source.read(8192)
