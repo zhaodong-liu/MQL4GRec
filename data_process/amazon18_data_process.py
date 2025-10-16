@@ -280,7 +280,7 @@ if __name__ == '__main__':
     # amazon18_dataset_list = ['Cell', 'Food', 'Movies', 'Pet']
     # amazon18_dataset_list = ['Scientific', 'Pantry', 'Office']
     # amazon18_dataset_list = ['Automotive', 'CDs', 'Electronics', 'Sports', 'Tools', 'Toys']
-    amazon18_dataset_list = ['Home']
+    amazon18_dataset_list = ['Instruments']
     for dataset in amazon18_dataset_list:
         
         print('\n' + '=' * 20 + '\n')
