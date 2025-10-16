@@ -1,4 +1,4 @@
 
 
 
-python load_all_figures.py --dataset Instruments
+python data_process/load_all_figures.py --dataset Instruments

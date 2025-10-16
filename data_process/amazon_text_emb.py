@@ -108,7 +108,7 @@ def generate_item_embedding(args, item_text_list, tokenizer, model, word_drop_ra
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--dataset', type=str, default='Instruments', help='Instruments / Arts / Games')
-    parser.add_argument('--root', type=str, default="/scratch/zl4789/MQL4GRec/data_process/MQL4GRec")
+    parser.add_argument('--root', type=str, default="/data_process/MQL4GRec")
     parser.add_argument('--gpu_id', type=int, default=0, help='ID of running GPU')
     parser.add_argument('--plm_name', type=str, default='llama')
     parser.add_argument('--model_name_or_path', type=str, default='huggyllama/llama-7b')

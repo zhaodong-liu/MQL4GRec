@@ -1,3 +1,3 @@
 
 export CUDA_VISIBLE_DEVICES=1
-python amazon_text_emb.py --dataset Instruments
+python data_process/amazon_text_emb.py --dataset Instruments

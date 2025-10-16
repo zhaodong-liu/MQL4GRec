@@ -1,0 +1,18 @@
+/vast/zl4789/conda-envs/multimodal/lib/python3.10/site-packages/transformers/utils/hub.py:124: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+/vast/zl4789/conda-envs/multimodal/lib/python3.10/site-packages/transformers/utils/hub.py:124: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Traceback (most recent call last):
+  File "/scratch/zl4789/MQL4GRec/data_process/load_all_figures.py", line 190, in <module>
+    meta_items = load_meta_data(args)
+  File "/scratch/zl4789/MQL4GRec/data_process/load_all_figures.py", line 71, in load_meta_data
+    meta_items = load_meta_items(meta_file_path)
+  File "/scratch/zl4789/MQL4GRec/data_process/load_all_figures.py", line 40, in load_meta_items
+    with gzip.open(file, "r") as fp:
+  File "/vast/zl4789/conda-envs/multimodal/lib/python3.10/gzip.py", line 58, in open
+    binary_file = GzipFile(filename, gz_mode, compresslevel)
+  File "/vast/zl4789/conda-envs/multimodal/lib/python3.10/gzip.py", line 174, in __init__
+    fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')
+FileNotFoundError: [Errno 2] No such file or directory: 'data_process/amazon18_data/Metadata/meta_Musical_Instruments.json.gz'
+python: can't open file '/scratch/zl4789/MQL4GRec/data_process/MQL4GRec/data_process/amazon_text_emb.py': [Errno 2] No such file or directory
+python: can't open file '/scratch/zl4789/MQL4GRec/data_process/MQL4GRec/data_process/clip_feature.py': [Errno 2] No such file or directory

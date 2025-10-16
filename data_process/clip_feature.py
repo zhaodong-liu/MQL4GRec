@@ -81,11 +81,11 @@ def get_feature(args):
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--dataset', type=str, default='Instruments', help='Instruments / Arts / Games')
-    parser.add_argument('--image_root', type=str, default="/scratch/zl4789/MQL4GRec/data_process/amazon18_data/Images")
-    parser.add_argument('--save_root', type=str, default="/scratch/zl4789/MQL4GRec/data_process/MQL4GRec")
+    parser.add_argument('--image_root', type=str, default="data_process/amazon18_data/Images")
+    parser.add_argument('--save_root', type=str, default="data_process/MQL4GRec")
     parser.add_argument('--gpu_id', type=int, default=0, help='ID of running GPU')
     parser.add_argument('--backbone', type=str, default='ViT-L/14')
-    parser.add_argument('--model_cache_dir', type=str, default='/scratch/zl4789/MQL4GRec/.cachemodelsclip')
+    parser.add_argument('--model_cache_dir', type=str, default='.cachemodels/clip')
     return parser.parse_args()
     
 if __name__ == "__main__":

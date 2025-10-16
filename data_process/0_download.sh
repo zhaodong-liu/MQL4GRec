@@ -3,17 +3,10 @@
 # Usage: bash 0_download.sh [dataset_name] [output_path]
 
 DATASET=${1:-"Instruments"}
-OUTPUT_PATH=${2:-"./amazon18_data"}
+OUTPUT_PATH=${2:-"data_process/amazon18_data"}
 
-echo "======================================"
-echo "Amazon Dataset Downloader"
-echo "======================================"
-echo "Dataset: $DATASET"
-echo "Output: $OUTPUT_PATH"
-echo "======================================"
-echo ""
 
-python 0_download_amazon_data.py \
+python data_process/0_download_amazon_data.py \
     --dataset "$DATASET" \
     --output_path "$OUTPUT_PATH"
 

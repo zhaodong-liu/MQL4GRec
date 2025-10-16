@@ -13,9 +13,13 @@
 
 source /share/apps/anaconda3/2020.07/etc/profile.d/conda.sh;
 conda activate multimodal
-cd /scratch/zl4789/MQL4GRec/data_process
+cd /scratch/zl4789/MQL4GRec
 
 
-python load_all_figures.py --dataset Instruments
+bash /scratch/zl4789/MQL4GRec/data_process/0_download.sh
+bash /scratch/zl4789/MQL4GRec/data_process/1_load_figure.sh
+bash /scratch/zl4789/MQL4GRec/data_process/2_process.sh
+bash /scratch/zl4789/MQL4GRec/data_process/3_get_text_emb.sh
+bash /scratch/zl4789/MQL4GRec/data_process/4_get_image_emb.sh
 
 conda deactivate
