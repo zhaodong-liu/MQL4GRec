@@ -19,7 +19,7 @@ cd /scratch/zl4789/MQL4GRec
 bash /scratch/zl4789/MQL4GRec/data_process/0_download.sh
 bash /scratch/zl4789/MQL4GRec/data_process/1_load_figure.sh
 bash /scratch/zl4789/MQL4GRec/data_process/2_process.sh
-bash /scratch/zl4789/MQL4GRec/data_process/3_get_text_emb.sh
+# bash /scratch/zl4789/MQL4GRec/data_process/3_get_text_emb.sh
 bash /scratch/zl4789/MQL4GRec/data_process/4_get_image_emb.sh
 
 conda deactivate
