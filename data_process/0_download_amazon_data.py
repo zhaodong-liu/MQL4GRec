@@ -9,8 +9,12 @@ import os
 import urllib.request
 import gzip
 import shutil
+import ssl
 from tqdm import tqdm
 from utils import amazon18_dataset2fullname
+
+# Create unverified SSL context for environments with certificate issues
+ssl._create_default_https_context = ssl._create_unverified_context
 
 
 class DownloadProgressBar(tqdm):
@@ -24,10 +28,31 @@ class DownloadProgressBar(tqdm):
 def download_url(url, output_path):
     """Download a file from URL with progress bar"""
     try:
-        with DownloadProgressBar(unit='B', unit_scale=True,
-                                miniters=1, desc=os.path.basename(output_path)) as t:
-            urllib.request.urlretrieve(url, filename=output_path, reporthook=t.update_to)
-        return True
+        # Try using requests if available (better SSL handling)
+        try:
+            import requests
+            response = requests.get(url, stream=True, verify=True, timeout=60)
+            response.raise_for_status()
+
+            total_size = int(response.headers.get('content-length', 0))
+            block_size = 8192
+
+            with open(output_path, 'wb') as f:
+                with tqdm(total=total_size, unit='B', unit_scale=True,
+                         desc=os.path.basename(output_path)) as pbar:
+                    for chunk in response.iter_content(chunk_size=block_size):
+                        if chunk:
+                            f.write(chunk)
+                            pbar.update(len(chunk))
+            return True
+
+        except ImportError:
+            # Fallback to urllib if requests is not available
+            with DownloadProgressBar(unit='B', unit_scale=True,
+                                    miniters=1, desc=os.path.basename(output_path)) as t:
+                urllib.request.urlretrieve(url, filename=output_path, reporthook=t.update_to)
+            return True
+
     except Exception as e:
         print(f"Error downloading {url}: {e}")
         return False
