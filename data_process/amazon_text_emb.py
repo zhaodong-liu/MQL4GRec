@@ -59,12 +59,19 @@ def generate_item_embedding(args, item_text_list, tokenizer, model, word_drop_ra
 
     embeddings = []
     start, batch_size = 0, 1
+    # with torch.no_grad():
+    #     while start < len(order_texts):
+    #         if (start+1)%100==0:
+    #             print("==>",start+1)
+    #         field_texts = order_texts[start: start + batch_size]
+    #         # print(field_texts)
+    #         field_texts = zip(*field_texts)
+    
+    #         field_embeddings = []
+
     with torch.no_grad():
-        while start < len(order_texts):
-            if (start+1)%100==0:
-                print("==>",start+1)
+        for start in tqdm(range(0, len(order_texts), batch_size), desc="Generating embeddings"):
             field_texts = order_texts[start: start + batch_size]
-            # print(field_texts)
             field_texts = zip(*field_texts)
     
             field_embeddings = []
@@ -120,6 +127,7 @@ def parse_args():
 
 if __name__ == '__main__':
     args = parse_args()
+    print(args.gpu_id)
 
     args.root = os.path.join(args.root, args.dataset)
 
@@ -137,5 +145,7 @@ if __name__ == '__main__':
 
     generate_item_embedding(args, item_text_list,plm_tokenizer,
                             plm_model, word_drop_ratio=args.word_drop_ratio)
+
+
 
 

@@ -42,6 +42,8 @@ def get_feature(args):
     # os.makedirs(save_path, exist_ok=True)
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
+
+    print(device)
     # device = "cpu"
     print('Load model.')
     model, preprocess = clip.load(args.backbone, device=device, download_root=args.model_cache_dir)
