@@ -93,7 +93,7 @@ def download_amazon_dataset(dataset, output_root):
     os.makedirs(review_dir, exist_ok=True)
 
     # Base URL
-    base_url = "https://datarepo.eng.ucsd.edu/mcauley_group/data/amazon_v2"
+    base_url = "https://mcauleylab.ucsd.edu/public_datasets/data/amazon_v2"
 
     # File URLs and paths
     files_to_download = [
