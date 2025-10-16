@@ -11,3 +11,15 @@ log
 
 data_process/amazon18_data
 data/
+data_process/MQL4GRec
+data_process/jobs
+
+.cachemodels/
+cache_models/
+
+cache_models/
+.cache*/
+
+
+
+.vscode/cache_models/
