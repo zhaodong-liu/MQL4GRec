@@ -27,17 +27,38 @@ v4.43.0, 4.44.0 are incompatible with accelerate==0.28.0 - version change requir
 
 ## Quick Start
 
-### Data Processing
+### Option 1: Automated Data Processing (Recommended)
+
+**NEW**: We now provide automated scripts to download and process Amazon datasets from scratch!
+
+```bash
+cd data_process
+
+# Run the full pipeline with one command (downloads data, images, generates embeddings)
+bash run_full_pipeline.sh Instruments ./amazon18_data ./MQL4GRec_data 0
+
+# Or download only
+python 0_download_amazon_data.py --dataset Instruments --output_path ./amazon18_data
 ```
+
+See `data_process/README.md` for detailed documentation.
+
+**Available datasets:** Beauty, Fashion, Arts, Automotive, Books, Electronics, Food, Home, Instruments, Movies, Office, Pet, Sports, Toys, Games, and more.
+
+### Option 2: Use Preprocessed Data
+
+Preprocessed data, pretrained checkpoints, and training logs:
+[Google Drive Folder](https://drive.google.com/drive/folders/1eewycbcAJ95atmF_V3bNchPIFDSw_TQC)
+
+### Manual Data Processing Steps
+```bash
 cd data_process
 ```
-1. Download images  
-2. Process data to ensure each item corresponds to one image and one text description  
-3. Generate text embeddings  
-4. Generate image embeddings    
-
-Preprocessed data, pretrained checkpoints, and training logs:  
-[Google Drive Folder](https://drive.google.com/drive/folders/1eewycbcAJ95atmF_V3bNchPIFDSw_TQC)
+1. Download Amazon dataset: `python 0_download_amazon_data.py --dataset Instruments`
+2. Download images: `python load_all_figures.py --dataset Instruments`
+3. Process data: `python amazon18_data_process.py --dataset Instruments`
+4. Generate text embeddings: `python amazon_text_emb.py --dataset Instruments`
+5. Generate image embeddings: `python clip_feature.py --dataset Instruments`
 
 ### Training the Quantitative Translator
 ```
