@@ -80,6 +80,15 @@ def set_device(gpu_id):
             'cuda:' + str(gpu_id) if torch.cuda.is_available() else 'cpu')
 
 def load_plm(model_path='bert-base-uncased', kwargs=None):
+    if kwargs is None:
+        kwargs = {}
+
+    # Create cache directory if it doesn't exist
+    if 'cache_dir' in kwargs and kwargs['cache_dir']:
+        os.makedirs(kwargs['cache_dir'], exist_ok=True)
+
+    # Remove local_files_only if it exists to allow downloads
+    kwargs.pop('local_files_only', None)
 
     tokenizer = AutoTokenizer.from_pretrained(model_path, **kwargs)
 
