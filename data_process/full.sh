@@ -12,16 +12,9 @@
 
 set -euo pipefail
 
-DIR="$(cd -- "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
-source "$DIR/config.sh"
+source data_process/config.sh
 
 DATASETS=(CDs Instruments Sports Games Beauty Arts)
-
-# config.sh now provides absolute paths, so no need to convert
-# But if user overrides with relative paths, convert them
-[[ "$AMAZON18_INPUT_PATH" != /* ]] && AMAZON18_INPUT_PATH="$PROJECT_ROOT/${AMAZON18_INPUT_PATH#./}"
-[[ "$OUTPUT_PATH" != /* ]] && OUTPUT_PATH="$PROJECT_ROOT/${OUTPUT_PATH#./}"
-[[ "$IMAGE_ROOT" != /* ]] && IMAGE_ROOT="$PROJECT_ROOT/${IMAGE_ROOT#./}"
 
 mkdir -p "$AMAZON18_INPUT_PATH"
 mkdir -p "$OUTPUT_PATH"
@@ -29,28 +22,23 @@ mkdir -p "$OUTPUT_PATH"
 source /share/apps/anaconda3/2020.07/etc/profile.d/conda.sh;
 conda activate multimodal
 
-# Get the absolute path of MQL4GRec directory (parent of data_process)
-SCRIPT_DIR="$(cd -- "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
-PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
-cd "$PROJECT_ROOT"
-
 export CUDA_VISIBLE_DEVICES
 
 for DATASET in "${DATASETS[@]}"; do
-  python "$DIR/0_download_amazon_data.py" \
+  python data_process/0_download_amazon_data.py \
     --dataset "$DATASET" \
     --output_path "$AMAZON18_INPUT_PATH"
 
-  python "$DIR/load_all_figures.py" --dataset "$DATASET"
+  python data_process/load_all_figures.py --dataset "$DATASET"
 
-  python "$DIR/amazon18_data_process.py" \
+  python data_process/amazon18_data_process.py \
     --dataset "$DATASET" \
     --input_path "$AMAZON18_INPUT_PATH" \
     --output_path "$OUTPUT_PATH"
 
-  python "$DIR/amazon_text_emb.py" --dataset "$DATASET"
+  python data_process/amazon_text_emb.py --dataset "$DATASET"
 
-  python "$DIR/clip_feature.py" \
+  python data_process/clip_feature.py \
     --image_root "$IMAGE_ROOT" \
     --save_root "$SAVE_ROOT" \
     --model_cache_dir "$MODEL_CACHE_DIR" \
