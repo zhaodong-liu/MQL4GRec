@@ -1,10 +1,12 @@
+#!/bin/bash
+set -euo pipefail
+DIR="$(cd -- "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+source "$DIR/config.sh"
 
-export CUDA_VISIBLE_DEVICES=1
+export CUDA_VISIBLE_DEVICES   # 来自 config.sh
 
-python data_process/clip_feature.py \
-    --image_root data_process/amazon18_data/Images \
-    --save_root data_process/MQL4GRec \
-    --model_cache_dir /scratch/zl4789/MQL4GRec/.cachemodels/clip \
-    --dataset Instruments
-
-
+python "$DIR/clip_feature.py" \
+  --image_root "$IMAGE_ROOT" \
+  --save_root "$SAVE_ROOT" \
+  --model_cache_dir "$MODEL_CACHE_DIR" \
+  --dataset "$DATASET"

@@ -399,26 +399,19 @@ def parse_args():
 if __name__ == '__main__':
     args = parse_args()
     
-    # ============ 诊断 GPU ============
-    print("="*60)
-    print("GPU Diagnostics:")
-    print(f"  CUDA available: {torch.cuda.is_available()}")
-    if torch.cuda.is_available():
-        print(f"  CUDA device count: {torch.cuda.device_count()}")
-        print(f"  CUDA device name: {torch.cuda.get_device_name(0)}")
-        print(f"  CUDA version: {torch.version.cuda}")
-    else:
-        print("  WARNING: CUDA is NOT available!")
-    print(f"  PyTorch version: {torch.__version__}")
-    print("="*60)
-    
-    # ============ 设置设备 ============
-    if torch.cuda.is_available():
-        device = torch.device(f'cuda:{args.gpu_id}')
-        print(f"\n✓ Using GPU: {torch.cuda.get_device_name(args.gpu_id)}")
-    else:
-        device = torch.device('cpu')
-        print("\n✗ Using CPU (GPU not available)")
+    # amazon18_dataset_list = ['Cell', 'Food', 'Movies', 'Pet']
+    # amazon18_dataset_list = ['Scientific', 'Pantry', 'Office']
+    # amazon18_dataset_list = ['Automotive', 'CDs', 'Electronics', 'Sports', 'Tools', 'Toys']
+    for dataset in [args.dataset]:
+        
+        print('\n' + '=' * 20 + '\n')
+        if dataset == 'Fashion':
+            continue
+        args.dataset = dataset
+        
+        # load interactions from raw rating file
+        rating_inters, meta_items = preprocess_rating(args)
+
         
     args.device = device
     args.root = os.path.join(args.root, args.dataset)
