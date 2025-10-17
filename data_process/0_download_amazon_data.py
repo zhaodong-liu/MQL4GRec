@@ -77,7 +77,8 @@ def download_amazon_dataset(dataset, output_root):
         print(f"Error: Unknown dataset '{dataset}'")
         print(f"Available datasets: {list(amazon18_dataset2fullname.keys())}")
         return False
-
+    print(f"Available datasets: {list(amazon18_dataset2fullname.keys())}")
+    
     category_full = amazon18_dataset2fullname[dataset]
     print(f"\n{'='*60}")
     print(f"Downloading Amazon {dataset} ({category_full}) dataset")
