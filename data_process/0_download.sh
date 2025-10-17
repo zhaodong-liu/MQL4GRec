@@ -24,21 +24,8 @@ if [[ "$OUTPUT_PATH" != /* ]]; then
 fi
 mkdir -p "$OUTPUT_PATH"
 
-echo "==> DATASET       : $DATASET"
-echo "==> OUTPUT_PATH   : $OUTPUT_PATH"
-echo "==> Downloader    : $DIR/0_download_amazon_data.py"
-echo
 
 python "$DIR/0_download_amazon_data.py" \
   --dataset "$DATASET" \
   --output_path "$OUTPUT_PATH"
 
-echo
-echo "✓ Download completed successfully!"
-echo
-echo "Next steps:"
-echo "  1. Download images:     bash 1_load_figure.sh"
-echo "  2. Process data:        bash 2_process.sh"
-echo "  3. Extract text emb:    bash 3_get_text_emb.sh"
-echo "  4. Extract image emb:   bash 4_get_image_emb.sh"
-echo
