@@ -1,4 +1,4 @@
-name: /vast/zl4789/conda-envs/multimodal
+name: MQL-2.9.0
 channels:
   - pytorch
   - conda-forge

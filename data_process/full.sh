@@ -7,7 +7,7 @@
 #SBATCH --account=pr_119_tandon_priority
 #SBATCH --time=48:00:00
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=zl4789@nyu.edu
+#SBATCH --mail-user=yh46639@nyu.edu
 #SBATCH --requeue
 
 

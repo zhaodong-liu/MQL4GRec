@@ -70,6 +70,8 @@ else:
 
 ckpt = torch.load(ckpt_path, map_location=torch.device('cpu'))
 args = ckpt["args"]
+print("Loaded checkpoint from {}".format(ckpt_path))
+print('args:', args)
 state_dict = ckpt["state_dict"]
 
 data = EmbDataset(args.data_path)

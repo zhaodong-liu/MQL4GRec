@@ -1,4 +1,4 @@
-Dataset=Instruments
+Dataset=Arts
 
 OUTPUT_DIR=./data/$Dataset
 
