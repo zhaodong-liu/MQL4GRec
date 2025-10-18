@@ -119,7 +119,7 @@ def parse_args():
     parser.add_argument('--gpu_id', type=int, default=0, help='ID of running GPU')
     parser.add_argument('--plm_name', type=str, default='llama')
     parser.add_argument('--model_name_or_path', type=str, default='huggyllama/llama-7b')
-    parser.add_argument('--model_cache_dir', type=str, default='/scratch/yh4663/MQL4GRec/.cachemodels')
+    parser.add_argument('--model_cache_dir', type=str, default='cache_models')
     parser.add_argument('--max_sent_len', type=int, default=2048)
     parser.add_argument('--word_drop_ratio', type=float, default=-1, help='word drop ratio, do not drop by default')
     return parser.parse_args()
