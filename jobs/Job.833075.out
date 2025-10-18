@@ -1,5 +1,0 @@
-Process text data: 
- Dataset:  Instruments
-Load Model: huggyllama/llama-7b
-Generate Text Embedding: 
- Dataset:  Instruments

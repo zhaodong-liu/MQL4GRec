@@ -6,14 +6,14 @@ Code_num=256
 # Datasets='Instruments,Arts,Games,Pet,Cell,Automotive,Tools,Toys,Sports'
 Datasets='Instruments'
 
-OUTPUT_DIR=log/$Datasets/${Model}_${Code_num}
+OUTPUT_DIR=index/log/$Datasets/${Model}_${Code_num}
 mkdir -p $OUTPUT_DIR
 
-python -u main_mul.py \
+python -u index/main_mul.py \
   --num_emb_list $Code_num $Code_num $Code_num $Code_num \
   --sk_epsilons 0.0 0.0 0.0 0.003 \
   --device cuda:0 \
-  --data_root /scratch/zl4789/MQL4GRec/data \
+  --data_root data_process/MQL4GRec \
   --embedding_file .emb-llama-td.npy \
   --datasets $Datasets \
   --ckpt_dir $OUTPUT_DIR \
@@ -24,16 +24,16 @@ python -u main_mul.py \
 Model=ViT-L-14
 Code_num=256
 
-Datasets='Instruments,Arts,Games,Pet,Cell,Automotive,Tools,Toys,Sports'
+Datasets='Instruments,Arts,Games,CDs,Sports,Beauty'
 
 OUTPUT_DIR=log/$Datasets/${Model}_${Code_num}
 mkdir -p $OUTPUT_DIR
 
-python -u main_mul.py \
+python -u index/main_mul.py \
   --num_emb_list $Code_num $Code_num $Code_num $Code_num \
   --sk_epsilons 0.0 0.0 0.0 0.003 \
   --device cuda:0 \
-  --data_root /scratch/zl4789/MQL4GRec/data \
+  --data_root data_process/MQL4GRec \
   --embedding_file .emb-ViT-L-14.npy \
   --datasets $Datasets \
   --ckpt_dir $OUTPUT_DIR \
