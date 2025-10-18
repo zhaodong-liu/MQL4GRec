@@ -1,4 +1,5 @@
-Dataset=Instruments,Arts,Games,CDs,Sports,Beauty
+# Dataset=Instruments,Arts,Games,CDs,Sports,Beauty
+Dataset=Instruments
 
 OUTPUT_DIR=./data/$Dataset
 

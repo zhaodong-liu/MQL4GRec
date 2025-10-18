@@ -184,8 +184,8 @@ amazon18_dataset_list = [
     # 'Pet', 'Tools', 
     # 'Sports', 'Movies',
     # 'Electronics', 'Home', 'Clothing', 
-    'Books',
-    'Magazine', 'Gift', 'Music', 'Kindle'
+    'Beauty',
+    'CDs', 'Instruments', 'Sports', 'Games', 'Arts'
 ]
 
 amazon18_dataset2fullname = {
