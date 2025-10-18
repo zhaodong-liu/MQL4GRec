@@ -51,14 +51,9 @@ Preprocessed data, pretrained checkpoints, and training logs:
 [Google Drive Folder](https://drive.google.com/drive/folders/1eewycbcAJ95atmF_V3bNchPIFDSw_TQC)
 
 ### Manual Data Processing Steps
-```bash
-cd data_process
 ```
-1. Download Amazon dataset: `python 0_download_amazon_data.py --dataset Instruments`
-2. Download images: `python load_all_figures.py --dataset Instruments`
-3. Process data: `python amazon18_data_process.py --dataset Instruments`
-4. Generate text embeddings: `python amazon_text_emb.py --dataset Instruments`
-5. Generate image embeddings: `python clip_feature.py --dataset Instruments`
+bash full.sh
+```
 
 ### Training the Quantitative Translator
 ```
