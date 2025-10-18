@@ -12,7 +12,7 @@
 
 
 
-DATASETS=(CDs Instruments Sports Games Beauty Arts)
+DATASETS=(CDs Sports Games Beauty Arts Instruments)
 
 
 
@@ -31,7 +31,7 @@ for DATASET in "${DATASETS[@]}"; do
   python data_process/amazon18_data_process.py \
     --dataset "$DATASET" \
     --input_path data_process/amazon18_data \
-    --output_path data_process/MQL4GRec
+    --output_path data_process/MQL4GRec 
 
 
   python data_process/amazon_text_emb.py --dataset "$DATASET"
