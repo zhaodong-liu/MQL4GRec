@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #!/bin/bash
 #SBATCH --output=jobs/Job.%j.out
 #SBATCH --error=jobs/Job.%j.err
@@ -10,14 +11,12 @@
 #SBATCH --mail-user=yh46639@nyu.edu
 #SBATCH --requeue
 
+=======
+>>>>>>> origin/master
 
 
 DATASETS=(CDs Sports Games Beauty Arts Instruments)
 
-
-
-source /share/apps/anaconda3/2020.07/etc/profile.d/conda.sh;
-conda activate multimodal
 
 export CUDA_VISIBLE_DEVICES
 
@@ -42,5 +41,3 @@ for DATASET in "${DATASETS[@]}"; do
     --model_cache_dir cache_models/clip \
     --dataset "$DATASET"
 done
-
-conda deactivate

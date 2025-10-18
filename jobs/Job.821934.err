@@ -1,5 +1,0 @@
-/vast/zl4789/conda-envs/multimodal/lib/python3.10/site-packages/transformers/utils/hub.py:124: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
-  warnings.warn(
-python: can't open file '/scratch/zl4789/MQL4GRec/data_process/data_process/load_all_figures.py': [Errno 2] No such file or directory
-python: can't open file '/scratch/zl4789/MQL4GRec/data_process/MQL4GRec/data_process/amazon_text_emb.py': [Errno 2] No such file or directory
-python: can't open file '/scratch/zl4789/MQL4GRec/data_process/MQL4GRec/data_process/clip_feature.py': [Errno 2] No such file or directory
