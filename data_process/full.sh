@@ -1,7 +1,7 @@
 
 
-DATASETS=(CDs Sports Games Beauty Arts Instruments)
-
+# DATASETS=(CDs Sports Games Beauty Arts Instruments)
+DATASETS=(Instruments)
 
 export CUDA_VISIBLE_DEVICES
 

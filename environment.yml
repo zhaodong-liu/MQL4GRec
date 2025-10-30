@@ -1,4 +1,4 @@
-name: /vast/zl4789/conda-envs/multimodal
+name: /vast/zl4789/conda-envs/MQL_data
 channels:
   - pytorch
   - conda-forge
@@ -97,5 +97,5 @@ dependencies:
     - typing-extensions==4.15.0
     - urllib3==2.5.0
     - wcwidth==0.2.14
-prefix: /vast/zl4789/conda-envs/multimodal
+prefix: /vast/zl4789/conda-envs/MQL_data
 
