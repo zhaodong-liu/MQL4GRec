@@ -190,15 +190,6 @@ def load_datasets(args):
         elif task.lower() in ['item2fgimage', 'fgimage2item', 'fgimage2image', 'image2fgimage']:
             dataset = FGImageDataset(args, task=task.lower(), prompt_sample_num=prompt_sample_num, sample_num=data_sample_num)
             
-        elif task.lower() == "item2imagedel" or task.lower() == "image2itemdel":
-            dataset = ItemImageDelDataset(args, task=task.lower(), prompt_sample_num=prompt_sample_num, sample_num=data_sample_num)
-            
-        elif task.lower() == "seqimagedel":
-            dataset = SeqRecImageDelDataset(args, task=task.lower(), mode="train", prompt_sample_num=prompt_sample_num, sample_num=data_sample_num)
-
-        elif task.lower() == "seqitem2imagedel" or task.lower() == "seqimage2itemdel" or task.lower() == "fusionseqrecdel":
-            dataset = FusionSeqRecDelDataset(args, task=task.lower(), mode="train", prompt_sample_num=prompt_sample_num, sample_num=data_sample_num)
-
         else:
             raise NotImplementedError
         

@@ -57,9 +57,8 @@ bash full.sh
 
 ### Training the Quantitative Translator
 ```
-cd index
-bash scripts/run.sh          # Run training  
-bash scripts/gen_code_dis.sh # Generate code  
+bash index/scripts/run.sh          # Run training  
+bash index/scripts/gen_code_dis.sh # Generate code  
 ```
 
 ### Pre-training
