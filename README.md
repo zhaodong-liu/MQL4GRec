@@ -31,15 +31,12 @@ v4.43.0, 4.44.0 are incompatible with accelerate==0.28.0 - version change requir
 
 **NEW**: We now provide automated scripts to download and process Amazon datasets from scratch!
 
-```bash
+```
 cd data_process
 
 # Run the full pipeline with one command (downloads data, images, generates embeddings)
-bash run_full_pipeline.sh Instruments ./amazon18_data ./MQL4GRec_data 0
+bash full.sh
 
-# Or download only
-python 0_download_amazon_data.py --dataset Instruments --output_path ./amazon18_data
-```
 
 See `data_process/README.md` for detailed documentation.
 
