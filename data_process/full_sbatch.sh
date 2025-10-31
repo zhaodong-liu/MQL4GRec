@@ -6,7 +6,7 @@
 #SBATCH --mem=64GB
 #SBATCH --time=42:00:00
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=zl4789@nyu.edu
+#SBATCH --mail-user=tl3735@nyu.edu
 #SBATCH --requeue
 
 

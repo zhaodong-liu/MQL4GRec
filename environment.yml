@@ -1,4 +1,4 @@
-name: /vast/zl4789/conda-envs/MQL_data
+name: MQL_data
 channels:
   - pytorch
   - conda-forge
