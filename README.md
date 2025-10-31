@@ -33,24 +33,17 @@ v4.43.0, 4.44.0 are incompatible with accelerate==0.28.0 - version change requir
 
 ```
 cd data_process
+```
 
 # Run the full pipeline with one command (downloads data, images, generates embeddings)
-bash full.sh
-
+```
+bash data_process/full.sh
+```
 
 See `data_process/README.md` for detailed documentation.
 
 **Available datasets:** Beauty, Fashion, Arts, Automotive, Books, Electronics, Food, Home, Instruments, Movies, Office, Pet, Sports, Toys, Games, and more.
 
-### Option 2: Use Preprocessed Data
-
-Preprocessed data, pretrained checkpoints, and training logs:
-[Google Drive Folder](https://drive.google.com/drive/folders/1eewycbcAJ95atmF_V3bNchPIFDSw_TQC)
-
-### Manual Data Processing Steps
-```
-bash full.sh
-```
 
 ### Training the Quantitative Translator
 ```
