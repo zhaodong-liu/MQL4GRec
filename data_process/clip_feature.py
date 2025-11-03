@@ -31,14 +31,14 @@ def get_feature(args):
 
     image_file_path = f'{args.image_root}/{args.dataset}'
     save_path = f'{args.save_root}/{args.dataset}'
-    
+
     item2id_file = os.path.join(save_path, f'{args.dataset}.item2id')
     id2item = get_id2item_dict(item2id_file)
-    
+
     # print(id2item[str(0)])
-    
+
     images_info = load_json(os.path.join(args.image_root, f'{args.dataset}_images_info.json'))
-    
+
     # os.makedirs(save_path, exist_ok=True)
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -49,6 +49,7 @@ def get_feature(args):
     model, preprocess = clip.load(args.backbone, device=device, download_root=args.model_cache_dir)
 
     embeddings = []
+    asins = []  # Store ASIN information
 
     with torch.no_grad():
         for i in tqdm(range(len(id2item))):
@@ -66,19 +67,28 @@ def get_feature(args):
 
             image_features = model.encode_image(image)
             image_feature = image_features[0].cpu()
-            
+
             embeddings.append(image_feature)
-            
+            asins.append(item)  # Store the ASIN (item ID)
+
             # break
-            
+
     embeddings = torch.stack(embeddings, dim=0).numpy()
     print('Embeddings shape: ', embeddings.shape)
+    print(f'Total ASINs collected: {len(asins)}')
 
     backbone_name = args.backbone.replace('/', '-')
-    
+
     file = os.path.join(save_path, args.dataset + '.emb-' + backbone_name + ".npy")
-    
-    np.save(file, embeddings)
+
+    # Save as dictionary format with ASIN information
+    image_data = {
+        'asins': asins,
+        'embeddings': embeddings
+    }
+
+    np.save(file, image_data, allow_pickle=True)
+    print(f'✓ Saved {len(asins)} image embeddings with ASIN mapping to {file}')
     
 def parse_args():
     parser = argparse.ArgumentParser()
