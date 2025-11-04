@@ -21,6 +21,8 @@ def parse_args():
     
     parser.add_argument('--dataset', type=str, default=None)
     parser.add_argument('--ckpt_path', type=str, default=None)
+    parser.add_argument('--data_root', type=str, default=None)  # 新增：数据根目录
+    parser.add_argument('--embedding_file', type=str, default='.emb-llama-td.npy')  # 新增：embedding文件后缀
     parser.add_argument('--output_dir', type=str, default=None)
     parser.add_argument('--output_file', type=str, default=None)
     parser.add_argument('--content', type=str, default=None)
@@ -68,36 +70,41 @@ if args.content == 'image':
 else:
     prefix = ["<a_{}>","<b_{}>","<c_{}>","<d_{}>","<e_{}>"]
 
+# 加载checkpoint
 ckpt = torch.load(ckpt_path, map_location=torch.device('cpu'))
-args = ckpt["args"]
-print("Loaded checkpoint from {}".format(ckpt_path))
-print('args:', args)
+ckpt_args = ckpt["args"]
 state_dict = ckpt["state_dict"]
 
-data = EmbDataset(args.data_path)
+# 构建embedding文件路径
+embedding_path = os.path.join(args.data_root, args.dataset, 
+                              f'{args.dataset}{args.embedding_file}')
+print(f"Loading embeddings from: {embedding_path}")
+
+# 加载embedding数据
+data = EmbDataset(embedding_path)
 
 model = RQVAE(in_dim=data.dim,
-                  num_emb_list=args.num_emb_list,
-                  e_dim=args.e_dim,
-                  layers=args.layers,
-                  dropout_prob=args.dropout_prob,
-                  bn=args.bn,
-                  loss_type=args.loss_type,
-                  quant_loss_weight=args.quant_loss_weight,
-                  kmeans_init=args.kmeans_init,
-                  kmeans_iters=args.kmeans_iters,
-                  sk_epsilons=args.sk_epsilons,
-                  sk_iters=args.sk_iters,
-                  )
+              num_emb_list=ckpt_args.num_emb_list,
+              e_dim=ckpt_args.e_dim,
+              layers=ckpt_args.layers,
+              dropout_prob=ckpt_args.dropout_prob,
+              bn=ckpt_args.bn,
+              loss_type=ckpt_args.loss_type,
+              quant_loss_weight=ckpt_args.quant_loss_weight,
+              kmeans_init=ckpt_args.kmeans_init,
+              kmeans_iters=ckpt_args.kmeans_iters,
+              sk_epsilons=ckpt_args.sk_epsilons,
+              sk_iters=ckpt_args.sk_iters,
+              )
 
 model.load_state_dict(state_dict)
 model = model.to(device)
 model.eval()
 print(model)
 
-data_loader = DataLoader(data,num_workers=args.num_workers,
-                             batch_size=64, shuffle=False,
-                             pin_memory=True)
+data_loader = DataLoader(data, num_workers=ckpt_args.num_workers,
+                         batch_size=64, shuffle=False,
+                         pin_memory=True)
 
 all_indices = []
 all_indices_str = []
@@ -112,33 +119,27 @@ for d in tqdm(data_loader):
     for index in indices:
         code = []
         for i, ind in enumerate(index):
-            # code.append(prefix[i].format(int(ind)))
             code.append(int(ind))
 
         all_indices.append(code)
         all_indices_str.append(str(code))
         all_indices_str_set.add(str(code))
-        # print(str(code))
-    # break
     all_distances.extend(distances)
 
 
 all_distances = np.array(all_distances)
 
-
 for i in all_indices_str_set:
     print(i)
     break
 
-# print(all_distances)
-print(all_distances.shape) ## (num, 4, 256)
+print(all_distances.shape)
 
 sort_distances_index = np.argsort(all_distances, axis=2)
 
 item_min_dis = defaultdict(list)
 
 for item, distances in tqdm(enumerate(all_distances), desc='cal distances'):
-
     for dis in distances:
         item_min_dis[item].append(np.min(dis))
 
@@ -151,11 +152,9 @@ for collision_items in collision_item_groups:
         
 print('collision items num: ', len(all_collision_items))
 
-# new_indices_set = set()
-
 tt = 0
-level = len(args.num_emb_list) - 1
-max_num = args.num_emb_list[0]
+level = len(ckpt_args.num_emb_list) - 1
+max_num = ckpt_args.num_emb_list[0]
 
 while True:
     tot_item = len(all_indices_str)
@@ -171,13 +170,11 @@ while True:
     print(collision_item_groups)
     print(len(collision_item_groups))
     
-    
     for collision_items in collision_item_groups:
         
         min_distances = []
         for i, item in enumerate(collision_items):
             min_distances.append(item_min_dis[item][level])
-
 
         min_index = np.argsort(np.array(min_distances))
         
@@ -187,19 +184,13 @@ while True:
                 continue
             
             item = collision_items[m_index]
-            # print(item)
             
             ori_code = copy.deepcopy(all_indices[item])
-            # print(ori_code)
             
             num = i
             while str(ori_code) in all_indices_str_set and num < max_num:
-
                 ori_code[level] = sort_distances_index[item][level][num]
                 num += 1
-                # print(sort_distances_index[item][level])
-                # print(ori_code)
-                # print(num)
             
             ### 倒数第二层
             for i in range(1, max_num):
@@ -209,7 +200,6 @@ while True:
                     
                 num = 0
                 while str(ori_code) in all_indices_str_set and num < max_num:
-
                     ori_code[level] = sort_distances_index[item][level][num]
                     num += 1
                     
@@ -218,14 +208,8 @@ while True:
                 
             all_indices[item] = ori_code
             all_indices_str[item] = str(ori_code)
-
             all_indices_str_set.add(str(ori_code))
-
-            # print(str(ori_code))
         
-        
-    # if level == 2:
-    #     break
     tt += 1
 
 

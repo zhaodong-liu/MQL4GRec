@@ -7,8 +7,7 @@ import datetime
 import numpy as np
 import torch
 from torch.utils.data import ConcatDataset
-from data import SeqRecDataset, FusionSeqRecDataset, ItemImageDataset, ItemImageDelDataset, FusionSeqRecDelDataset, SeqRecImageDelDataset, \
-    FGImageDataset, FGFusionSeqRecDataset
+from data import SeqRecDataset, FusionSeqRecDataset, ItemImageDataset 
 
 def parse_global_args(parser):
 
@@ -183,22 +182,10 @@ def load_datasets(args):
 
         elif task.lower() == "seqitem2image" or task.lower() == "seqimage2item" or task.lower() == "fusionseqrec":
             dataset = FusionSeqRecDataset(args, task=task.lower(), mode="train", prompt_sample_num=prompt_sample_num, sample_num=data_sample_num)
-            
-        elif task == 'fgfusionseqrec':
-            dataset = FGFusionSeqRecDataset(args, task=task.lower(), mode="train", prompt_sample_num=prompt_sample_num, sample_num=data_sample_num)
-        
+
         elif task.lower() in ['item2fgimage', 'fgimage2item', 'fgimage2image', 'image2fgimage']:
             dataset = FGImageDataset(args, task=task.lower(), prompt_sample_num=prompt_sample_num, sample_num=data_sample_num)
             
-        elif task.lower() == "item2imagedel" or task.lower() == "image2itemdel":
-            dataset = ItemImageDelDataset(args, task=task.lower(), prompt_sample_num=prompt_sample_num, sample_num=data_sample_num)
-            
-        elif task.lower() == "seqimagedel":
-            dataset = SeqRecImageDelDataset(args, task=task.lower(), mode="train", prompt_sample_num=prompt_sample_num, sample_num=data_sample_num)
-
-        elif task.lower() == "seqitem2imagedel" or task.lower() == "seqimage2itemdel" or task.lower() == "fusionseqrecdel":
-            dataset = FusionSeqRecDelDataset(args, task=task.lower(), mode="train", prompt_sample_num=prompt_sample_num, sample_num=data_sample_num)
-
         else:
             raise NotImplementedError
         
@@ -243,15 +230,6 @@ def load_pretrain_datasets(args):
             elif task.lower() == "seqitem2image" or task.lower() == "seqimage2item" or task.lower() == "fusionseqrec":
                 dataset = FusionSeqRecDataset(args, task=task.lower(), mode="train", prompt_sample_num=prompt_sample_num, sample_num=data_sample_num)
                 
-            elif task.lower() == "item2imagedel" or task.lower() == "image2itemdel":
-                dataset = ItemImageDelDataset(args, task=task.lower(), prompt_sample_num=prompt_sample_num, sample_num=data_sample_num)
-                
-            elif task.lower() == "seqimagedel":
-                dataset = SeqRecImageDelDataset(args, task=task.lower(), mode="train", prompt_sample_num=prompt_sample_num, sample_num=data_sample_num)
-
-            elif task.lower() == "seqitem2imagedel" or task.lower() == "seqimage2itemdel" or task.lower() == "fusionseqrecdel":
-                dataset = FusionSeqRecDelDataset(args, task=task.lower(), mode="train", prompt_sample_num=prompt_sample_num, sample_num=data_sample_num)
-
             else:
                 raise NotImplementedError
             

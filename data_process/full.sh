@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #!/bin/bash
 #SBATCH --output=jobs/Job.%j.out
 #SBATCH --error=jobs/Job.%j.err
@@ -11,12 +10,10 @@
 #SBATCH --mail-user=yh46639@nyu.edu
 #SBATCH --requeue
 
-=======
->>>>>>> origin/master
 
 
-DATASETS=(CDs Sports Games Beauty Arts Instruments)
-
+# DATASETS=(CDs Sports Games Beauty Arts Instruments)
+DATASETS=(Instruments)
 
 export CUDA_VISIBLE_DEVICES
 

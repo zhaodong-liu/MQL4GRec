@@ -31,35 +31,24 @@ v4.43.0, 4.44.0 are incompatible with accelerate==0.28.0 - version change requir
 
 **NEW**: We now provide automated scripts to download and process Amazon datasets from scratch!
 
-```bash
+```
 cd data_process
+```
 
 # Run the full pipeline with one command (downloads data, images, generates embeddings)
-bash run_full_pipeline.sh Instruments ./amazon18_data ./MQL4GRec_data 0
-
-# Or download only
-python 0_download_amazon_data.py --dataset Instruments --output_path ./amazon18_data
+```
+bash data_process/full.sh
 ```
 
 See `data_process/README.md` for detailed documentation.
 
 **Available datasets:** Beauty, Fashion, Arts, Automotive, Books, Electronics, Food, Home, Instruments, Movies, Office, Pet, Sports, Toys, Games, and more.
 
-### Option 2: Use Preprocessed Data
-
-Preprocessed data, pretrained checkpoints, and training logs:
-[Google Drive Folder](https://drive.google.com/drive/folders/1eewycbcAJ95atmF_V3bNchPIFDSw_TQC)
-
-### Manual Data Processing Steps
-```
-bash full.sh
-```
 
 ### Training the Quantitative Translator
 ```
-cd index
-bash scripts/run.sh          # Run training  
-bash scripts/gen_code_dis.sh # Generate code  
+bash index/scripts/run.sh          # Run training  
+bash index/scripts/gen_code_dis.sh # Generate code  
 ```
 
 ### Pre-training
