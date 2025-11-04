@@ -4,15 +4,15 @@
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=20
 #SBATCH --mem=64GB
-#SBATCH --time=42:00:00
+#SBATCH --time=72:00:00
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=zl4789@nyu.edu
 #SBATCH --requeue
 
 
 
-# DATASETS=(CDs Sports Games Beauty Arts Instruments)
-DATASETS=(Arts Instruments)
+DATASETS=(CDs Sports Games Beauty Arts Instruments)
+# DATASETS=(Arts Instruments)
 
 
 

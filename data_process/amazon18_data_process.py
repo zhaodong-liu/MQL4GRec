@@ -276,37 +276,33 @@ if __name__ == '__main__':
     args = parse_args()
 
     from utils import amazon18_dataset_list
-    for dataset in amazon18_dataset_list:
-        
-        print('\n' + '=' * 20 + '\n')
-        if dataset == 'Fashion':
-            continue
-        args.dataset = dataset
-        
-        # load interactions from raw rating file
-        rating_inters, meta_items = preprocess_rating(args)
+    
+    print('\n' + '=' * 20 + '\n')
+    
+    # load interactions from raw rating file
+    rating_inters, meta_items = preprocess_rating(args)
 
-        
-        # split train/valid/temp
-        all_inters, train_inters, valid_inters, test_inters, user2index, item2index = generate_data(args, rating_inters)
+    
+    # split train/valid/temp
+    all_inters, train_inters, valid_inters, test_inters, user2index, item2index = generate_data(args, rating_inters)
 
-        check_path(os.path.join(args.output_path, args.dataset))
+    check_path(os.path.join(args.output_path, args.dataset))
 
-        write_json_file(all_inters, os.path.join(args.output_path, args.dataset, f'{args.dataset}.inter.json'))
-        convert_to_atomic_files(args, train_inters, valid_inters, test_inters)
+    write_json_file(all_inters, os.path.join(args.output_path, args.dataset, f'{args.dataset}.inter.json'))
+    convert_to_atomic_files(args, train_inters, valid_inters, test_inters)
 
-        item2feature = collections.defaultdict(dict)
-        for item, item_id in item2index.items():
-            item2feature[item_id] = meta_items[item]
+    item2feature = collections.defaultdict(dict)
+    for item, item_id in item2index.items():
+        item2feature[item_id] = meta_items[item]
 
-        # reviews = load_review_data(args, user2index, item2index)
+    # reviews = load_review_data(args, user2index, item2index)
 
-        print("user:",len(user2index))
-        print("item:",len(item2index))
+    print("user:",len(user2index))
+    print("item:",len(item2index))
 
-        write_json_file(item2feature, os.path.join(args.output_path, args.dataset, f'{args.dataset}.item.json'))
-        # write_json_file(reviews, os.path.join(args.output_path, args.dataset, f'{args.dataset}.review.json'))
+    write_json_file(item2feature, os.path.join(args.output_path, args.dataset, f'{args.dataset}.item.json'))
+    # write_json_file(reviews, os.path.join(args.output_path, args.dataset, f'{args.dataset}.review.json'))
 
 
-        write_remap_index(user2index, os.path.join(args.output_path, args.dataset, f'{args.dataset}.user2id'))
-        write_remap_index(item2index, os.path.join(args.output_path, args.dataset, f'{args.dataset}.item2id'))
+    write_remap_index(user2index, os.path.join(args.output_path, args.dataset, f'{args.dataset}.user2id'))
+    write_remap_index(item2index, os.path.join(args.output_path, args.dataset, f'{args.dataset}.item2id'))
