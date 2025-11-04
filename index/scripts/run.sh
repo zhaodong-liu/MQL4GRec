@@ -4,7 +4,7 @@ Model=llama
 Code_num=256
 
 # Datasets='Instruments,Arts,Games,Pet,Cell,Automotive,Tools,Toys,Sports'
-Datasets='Instruments'
+Datasets='Arts'
 
 OUTPUT_DIR=index/log/$Datasets/${Model}_${Code_num}
 mkdir -p $OUTPUT_DIR
@@ -24,9 +24,9 @@ python -u index/main_mul.py \
 Model=ViT-L-14
 Code_num=256
 
-Datasets='Instruments,Arts,Games,CDs,Sports,Beauty'
+Datasets='Arts'
 
-OUTPUT_DIR=log/$Datasets/${Model}_${Code_num}
+OUTPUT_DIR=index/log/$Datasets/${Model}_${Code_num}
 mkdir -p $OUTPUT_DIR
 
 python -u index/main_mul.py \

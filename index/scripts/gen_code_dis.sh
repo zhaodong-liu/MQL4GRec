@@ -1,12 +1,12 @@
 # Dataset=Instruments,Arts,Games,CDs,Sports,Beauty
-Dataset=Instruments
+Dataset=Arts
 
 OUTPUT_DIR=./data/$Dataset
 
 python -u index/generate_indices_distance.py \
   --dataset $Dataset \
   --device cuda:0 \
-  --ckpt_path index/og/$Dataset/llama_256/best_collision_model.pth \
+  --ckpt_path index/log/$Dataset/llama_256/best_collision_model.pth \
   --output_dir $OUTPUT_DIR \
   --output_file ${Dataset}.index_lemb.json
 
