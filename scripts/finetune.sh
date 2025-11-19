@@ -8,16 +8,20 @@ Image_index_file=.index_vitemb.json
 Tasks='seqrec,seqimage,item2image,image2item,fusionseqrec'
 Valid_task=seqrec
 
-Datasets='Instruments'
+Datasets='Arts'
 
-load_model_name=pretrain_ckpt_path
+load_model_name=./log/$Datasets/ckpt_b1024_lr1e-3_seqrec,seqimage/pretrain
+#fix
+Per_device_batch_size=128
+Num_beams=20
+
 
 OUTPUT_DIR=./log/$Datasets
 mkdir -p $OUTPUT_DIR
 log_file=$OUTPUT_DIR/train.log
 
 torchrun --nproc_per_node=2 --master_port=2309 finetune.py \
-    --data_path ./data/ \
+    --data_path ./data_process/MQL4GRec/ \
     --dataset $Datasets \
     --output_dir $OUTPUT_DIR \
     --load_model_name $load_model_name \
@@ -35,15 +39,15 @@ torchrun --nproc_per_node=2 --master_port=2309 finetune.py \
     --tasks $Tasks \
     --valid_task $Valid_task > $log_file
 
-results_file=$OUTPUT_DIR/results_${Valid_task}_${20}.json
-save_file=$OUTPUT_DIR/save_${Valid_task}_${20}.json
+results_file=$OUTPUT_DIR/results_${Valid_task}_${Num_beams}.json
+save_file=$OUTPUT_DIR/save_${Valid_task}_${Num_beams}.json
 
 torchrun --nproc_per_node=2 --master_port=2309 test_ddp_save.py \
     --ckpt_path $OUTPUT_DIR \
-    --data_path ./data/ \
+    --data_path ./data_process/MQL4GRec/ \
     --dataset $Datasets \
     --test_batch_size 64 \
-    --num_beams 20 \
+    --num_beams $Num_beams \
     --index_file $Index_file \
     --image_index_file $Image_index_file \
     --test_task $Valid_task \
@@ -54,8 +58,8 @@ torchrun --nproc_per_node=2 --master_port=2309 test_ddp_save.py \
 python ensemble.py \
     --output_dir $OUTPUT_DIR\
     --dataset $Datasets\
-    --data_path ./data/\
+    --data_path ./data_process/MQL4GRec/\
     --index_file $Index_file\
     --image_index_file $Image_index_file\
-    --num_beams 20
+    --num_beams $Num_beams
 

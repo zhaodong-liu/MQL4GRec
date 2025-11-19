@@ -13,7 +13,7 @@ Image_index_file=.index_vitemb.json
 Tasks=seqrec,seqimage
 Valid_task=seqrec
 
-Datasets='Instruments'
+Datasets='Arts'
 
 OUTPUT_DIR=./log/$Datasets/${Base_model}_b${Per_device_batch_size}_lr${Learning_rate}_${Tasks}/pretrain
 mkdir -p $OUTPUT_DIR

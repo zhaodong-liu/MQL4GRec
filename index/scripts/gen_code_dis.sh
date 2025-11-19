@@ -7,7 +7,7 @@ Dataset=Arts
 DATA_ROOT=data_process/MQL4GRec
 
 # 输出目录
-OUTPUT_DIR=./data/$Dataset
+OUTPUT_DIR=./data_process/MQL4GRec/$Dataset
 mkdir -p $OUTPUT_DIR
 
 # 生成文本embedding的索引（LLaMA）

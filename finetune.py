@@ -132,7 +132,7 @@ def train(args):
             save_steps=args.save_and_eval_steps,
             output_dir=args.output_dir,
             save_total_limit=1,
-            load_best_model_at_end=True,
+            load_best_model_at_end=False,
             # deepspeed=args.deepspeed,
             ddp_find_unused_parameters=False if ddp else None,
             report_to=None,
@@ -140,7 +140,7 @@ def train(args):
         ),
         tokenizer=tokenizer,
         data_collator=collator,
-        callbacks=[early_stop]
+        #callbacks=[early_stop]
     )
     model.config.use_cache = False
 

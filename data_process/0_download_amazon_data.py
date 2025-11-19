@@ -94,27 +94,30 @@ def download_amazon_dataset(dataset, output_root):
     os.makedirs(review_dir, exist_ok=True)
 
     # Base URL
-    base_url = "https://mcauleylab.ucsd.edu/public_datasets/data/amazon_v2"
-
+    #base_url = "https://mcauleylab.ucsd.edu/public_datasets/data/amazon_v2"
+    BASE_2023_RAW = "https://mcauleylab.ucsd.edu/public_datasets/data/amazon_2023/raw"
+    BASE_2023_5CORE = "https://mcauleylab.ucsd.edu/public_datasets/data/amazon_2023/benchmark/5core"
     # File URLs and paths
     files_to_download = [
-        {
-            'name': 'Metadata',
-            'url': f"{base_url}/metaFiles2/meta_{category_full}.json.gz",
-            'path': os.path.join(metadata_dir, f"meta_{category_full}.json.gz")
-        },
-        {
-            'name': 'Ratings (CSV)',
-            'url': f"{base_url}/categoryFilesSmall/{category_full}.csv",
-            'path': os.path.join(ratings_dir, f"{category_full}.csv")
-        },
-        {
-            'name': '5-core Reviews',
-            'url': f"{base_url}/categoryFilesSmall/{category_full}_5.json.gz",
-            'path': os.path.join(review_dir, f"{category_full}_5.json.gz")
-        }
+    # 原始 review（jsonl.gz）
+    {
+        'name': 'Reviews (JSONL.GZ)',
+        'url': f"{BASE_2023_RAW}/review_categories/{category_full}.jsonl.gz",
+        'path': os.path.join(review_dir, f"{category_full}.jsonl.gz")
+    },
+    # 原始 metadata（jsonl.gz）
+    {
+        'name': 'Metadata (JSONL.GZ)',
+        'url': f"{BASE_2023_RAW}/meta_categories/meta_{category_full}.jsonl.gz",
+        'path': os.path.join(metadata_dir, f"meta_{category_full}.jsonl.gz")
+    },
+    # 5-core 纯ID（csv.gz）——可选：用于快速建立ID级别训练集
+    {
+        'name': '5-core Ratings-Only (CSV.GZ)',
+        'url': f"{BASE_2023_5CORE}/rating_only/{category_full}.csv.gz",
+        'path': os.path.join(ratings_dir, f"{category_full}.csv.gz")
+    },
     ]
-
     # Download each file
     download_success = True
     for file_info in files_to_download:
