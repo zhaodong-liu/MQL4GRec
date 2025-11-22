@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Dataset=Instruments,Arts,Games,CDs,Sports,Beauty
-Dataset=Arts
+Dataset=CDs
 
 # 数据根目录（embedding文件所在路径）
 DATA_ROOT=data_process/MQL4GRec

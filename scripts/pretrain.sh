@@ -13,14 +13,14 @@ Image_index_file=.index_vitemb.json
 Tasks=seqrec,seqimage
 Valid_task=seqrec
 
-Datasets='Arts'
+Datasets='CDs'
 
 OUTPUT_DIR=./log/$Datasets/${Base_model}_b${Per_device_batch_size}_lr${Learning_rate}_${Tasks}/pretrain
 mkdir -p $OUTPUT_DIR
 log_file=$OUTPUT_DIR/pretrain.log
 
 torchrun --nproc_per_node=1 --master_port=2309 pretrain.py \
-    --data_path ./data/ \
+    --data_path ./data_process/MQL4GRec/ \
     --pretrain_datasets $Datasets \
     --output_dir $OUTPUT_DIR \
     --base_model ./config/$Base_model \

@@ -89,6 +89,12 @@ def train(args):
         model.is_parallelizable = True
         model.model_parallel = True
 
+    if torch.cuda.is_available():
+        model.to(device)
+        if hasattr(model, "encoder") and not hasattr(model.encoder, "first_device"):
+            model.encoder.first_device = device
+        if hasattr(model, "decoder") and not hasattr(model.decoder, "first_device"):
+            model.decoder.first_device = device
     # early_stop = EarlyStoppingCallback(early_stopping_patience=20)
     
     warmup_steps = int(len(train_data) / (world_size * args.per_device_batch_size * args.gradient_accumulation_steps))
