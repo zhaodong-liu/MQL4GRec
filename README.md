@@ -50,15 +50,27 @@ See `data_process/README.md` for detailed documentation.
 bash index/scripts/run.sh          # Run training  
 bash index/scripts/gen_code_dis.sh # Generate code  
 ```
-
+### Before Pretraining/Finetune:
+make sure that you have installed SentencePiece in your environment
+```
+pip install sentencepiece
+```
+To change the dataset, make sure you changed both Datasets in 
+```
+scripts/pretrain.sh
+```
+ and 
+ ```
+ scripts/finetune.sh
+ ```
 ### Pre-training
 ```
-bash scripts/pretrain.sh
+sbatch SbatchPretrain.sh
 ```
 
 ### Fine-tuning
 ```
-bash scripts/finetune.sh
+sbatch SbatchFinetune.sh
 ```
 
 ## Notes  
