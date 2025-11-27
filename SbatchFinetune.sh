@@ -5,8 +5,8 @@
 #SBATCH --cpus-per-task=10
 #SBATCH --mem=64GB
 #SBATCH --account=pr_119_tandon_priority
-#SBATCH --time=24:00:00
-#SBATCH --gres=gpu:2
+#SBATCH --time=48:00:00
+#SBATCH --gres=gpu:a100:2
 #SBATCH --mail-type=ALL          
 #SBATCH --mail-user=yh4663@nyu.edu
 #SBATCH --requeue
