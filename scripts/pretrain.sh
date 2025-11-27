@@ -20,7 +20,7 @@ mkdir -p $OUTPUT_DIR
 log_file=$OUTPUT_DIR/pretrain.log
 
 torchrun --nproc_per_node=1 --master_port=2309 pretrain.py \
-    --data_path ./data/ \
+    --data_path ./data_process/MQL4GRec/ \
     --pretrain_datasets $Datasets \
     --output_dir $OUTPUT_DIR \
     --base_model ./config/$Base_model \

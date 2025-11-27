@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Dataset=Instruments,Arts,Games,CDs,Sports,Beauty
-Dataset=Instruments
+Dataset=CDs
 
 # 数据根目录（embedding文件所在路径）
 DATA_ROOT=data_process/MQL4GRec
 
 # 输出目录
-OUTPUT_DIR=./data/$Dataset
+OUTPUT_DIR=./data_process/MQL4GRec/$Dataset
 mkdir -p $OUTPUT_DIR
 
 # 生成文本embedding的索引（LLaMA）

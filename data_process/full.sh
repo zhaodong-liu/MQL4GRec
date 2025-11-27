@@ -1,3 +1,15 @@
+#!/bin/bash
+#SBATCH --output=jobs/Job.%j.out
+#SBATCH --error=jobs/Job.%j.err
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=20
+#SBATCH --mem=64GB
+#SBATCH --account=pr_119_tandon_priority
+#SBATCH --time=48:00:00
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=yh46639@nyu.edu
+#SBATCH --requeue
+
 
 
 # DATASETS=(CDs Sports Games Beauty Arts Instruments)
