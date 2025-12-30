@@ -6,18 +6,19 @@
 #SBATCH --mem=64GB
 #SBATCH --time=42:00:00
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=yh4663@nyu.edu
+#SBATCH --mail-user=zl4789@nyu.edu
 #SBATCH --requeue
 
 
 
 # DATASETS=(CDs Sports Games Beauty Arts Instruments)
-DATASETS=(Beauty)
+# DATASETS=(Arts Instruments)
+DATASETS=(Music Movies Kindle)
 
 
 
-#source ~/.bashrc
-#conda activate MQL_data
+source /share/apps/anaconda3/2020.07/etc/profile.d/conda.sh;
+conda activate MQL_data
 
 export CUDA_VISIBLE_DEVICES
 
