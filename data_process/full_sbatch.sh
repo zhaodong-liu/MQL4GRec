@@ -13,10 +13,11 @@
 
 # DATASETS=(CDs Sports Games Beauty Arts Instruments)
 # DATASETS=(Arts Instruments)
-DATASETS=(Music Movies Kindle)
+# DATASETS=(Music Movies Kindle)
+DATASETS=(Software Tools Cell Automotive Books Home Food)
 
 
-
+cd /scratch/zl4789/MQL4GRec/
 source /share/apps/anaconda3/2020.07/etc/profile.d/conda.sh;
 conda activate MQL_data
 
