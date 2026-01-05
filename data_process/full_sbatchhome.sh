@@ -4,7 +4,7 @@
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=20
 #SBATCH --mem=64GB
-#SBATCH --time=80:00:00
+#SBATCH --time=40:00:00
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=zl4789@nyu.edu
 #SBATCH --requeue
@@ -15,7 +15,7 @@
 # DATASETS=(Arts Instruments)
 # DATASETS=(Music Movies Kindle)
 # DATASETS=(Software Tools Cell Automotive Books Home Food)
-DATASETS=(Cell Automotive Books Home Food)
+DATASETS=(Home)
 
 cd /scratch/zl4789/MQL4GRec/
 source /share/apps/anaconda3/2020.07/etc/profile.d/conda.sh;

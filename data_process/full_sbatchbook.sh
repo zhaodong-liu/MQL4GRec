@@ -15,7 +15,7 @@
 # DATASETS=(Arts Instruments)
 # DATASETS=(Music Movies Kindle)
 # DATASETS=(Software Tools Cell Automotive Books Home Food)
-DATASETS=(Cell Automotive Books Home Food)
+DATASETS=(Books)
 
 cd /scratch/zl4789/MQL4GRec/
 source /share/apps/anaconda3/2020.07/etc/profile.d/conda.sh;
