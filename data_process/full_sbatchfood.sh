@@ -3,8 +3,9 @@
 #SBATCH --error=jobs/Job.%j.err
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=20
-#SBATCH --mem=64GB
+#SBATCH --mem=128GB
 #SBATCH --time=40:00:00
+#SBATCH --account=pr_119_tandon_priority
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=zl4789@nyu.edu
 #SBATCH --requeue

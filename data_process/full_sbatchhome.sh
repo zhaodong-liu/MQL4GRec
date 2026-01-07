@@ -3,12 +3,12 @@
 #SBATCH --error=jobs/Job.%j.err
 #SBATCH --nodes=1
 #SBATCH --cpus-per-task=20
-#SBATCH --mem=64GB
-#SBATCH --time=40:00:00
+#SBATCH --mem=128GB
+#SBATCH --time=140:00:00
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=zl4789@nyu.edu
 #SBATCH --requeue
-
+#SBATCH --account=pr_119_tandon_priority
 
 
 # DATASETS=(CDs Sports Games Beauty Arts Instruments)
